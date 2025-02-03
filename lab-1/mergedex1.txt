@@ -1,0 +1,14 @@
+editor
+like
+vim
+nano
+emacs
+or
+gedit
+editor
+like
+vim
+nano
+emacs
+or
+gedit
