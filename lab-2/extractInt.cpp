@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -20,16 +21,29 @@ int main ()
 	cout <<endl;
 	
 	//Open the file in read mode with the ifstream object fin
+	ifstream fin(fileName.c_str());
 	
 	//Check if the file opened successfully. If not, exit the program
+	if (!fin.is_open()){
+		cout << "Could not open file" << endl;
+		return 1;
+	}
 	
 	//Print the size of the file
 	cout << "File Size: " << getFileSize(fin); 
+
+	ofstream intFile("intVals.txt");
+	ofstream junkFile("junkVals.txt");
 	
 	while (getInt(fin, valueIsGood, intData, junkData)){
 		/* Code here: Check if the value in intData is good i.e. integer. This is done by checking valueIsGood boolean
 		If value is good, save the intData in intVals.txt else save the junkData in junkVals.txt
 		*/
+		if (valueIsGood){
+			intFile << intData << endl;
+		} else {
+			junkFile << junkData << endl;
+		}
 	}
 	// Close the files
 	
@@ -40,6 +54,10 @@ int main ()
 int getFileSize(ifstream& fin){
 	int fileSize = 0; //For our case, fileSize will not exceed integer's limit so we do not need long
 	//Write the logic to print the file size (in bytes)
+	int currentPos = fin.tellg();
+	fin.seekg(0, ios::end);
+	fileSize = fin.tellg();
+	fin.seekg(currentPos);
 
 	return fileSize;
 }
@@ -48,6 +66,24 @@ int getFileSize(ifstream& fin){
 bool getInt(ifstream& fin, bool& goodFlag, int& intData, string& junkData){
 	bool canContinue;
 	// Code the logic here
+	string line;
+	goodFlag = false;
+
+	if (getline(fin, line)){
+		try{
+			size_t pos;
+			intData = stoi(line, &pos);
+			goodFlag = (pos == line.length());
+			if (!goodFlag) {
+				junkData = line;
+			}
+		} catch (...) {
+			junkData = line;
+		}
+		canContinue = true;
+	} else {
+		canContinue = false;
+	}
 
 	return canContinue;
 }
