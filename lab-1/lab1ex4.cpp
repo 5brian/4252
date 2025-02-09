@@ -2,16 +2,14 @@
 using namespace std;
 
 int main() {
-    double fahrenheit, celsius;
+  double fahrenheit, celsius;
 
-    cout << "Enter fahrenheit temperature: ";
-    cin >> fahrenheit;
+  cout << "Enter fahrenheit temperature: ";
+  cin >> fahrenheit;
 
-    celsius = (fahrenheit - 32) * 5.0 / 9.0;
+  celsius = (fahrenheit - 32) * 5.0 / 9.0;
 
-    cout << "Celsius is: " << celsius << endl;
+  cout << "Celsius is: " << celsius << endl;
 
-    return 0;
+  return 0;
 }
-
-
