@@ -16,29 +16,32 @@ int main ()
 	string junkData;
 	bool valueIsGood = false;
 	string fileName = "";
+    int lineCount = 0;
+
 	cout << "Enter the input filename: ";
 	cin >> fileName;
 	cout <<endl;
-	
+
 	//Open the file in read mode with the ifstream object fin
 	ifstream fin(fileName.c_str());
-	
+
 	//Check if the file opened successfully. If not, exit the program
 	if (!fin.is_open()){
 		cout << "Could not open file" << endl;
 		return 1;
 	}
-	
+
 	//Print the size of the file
-	cout << "File Size: " << getFileSize(fin); 
+	cout << "File Size: " << getFileSize(fin) << endl;
 
 	ofstream intFile("intVals.txt");
 	ofstream junkFile("junkVals.txt");
-	
+
 	while (getInt(fin, valueIsGood, intData, junkData)){
 		/* Code here: Check if the value in intData is good i.e. integer. This is done by checking valueIsGood boolean
 		If value is good, save the intData in intVals.txt else save the junkData in junkVals.txt
 		*/
+        lineCount++;
 		if (valueIsGood){
 			intFile << intData << endl;
 		} else {
@@ -46,7 +49,8 @@ int main ()
 		}
 	}
 	// Close the files
-	
+
+    cout << "Number of lines in the file: " << lineCount << endl;
 	cout <<"You can now open intVals.txt and junkVals.txt to see the output!"<<endl;
 	return 0;
 }
@@ -87,6 +91,3 @@ bool getInt(ifstream& fin, bool& goodFlag, int& intData, string& junkData){
 
 	return canContinue;
 }
-
-
-
