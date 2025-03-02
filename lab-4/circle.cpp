@@ -7,7 +7,7 @@ using namespace std;
 Circle::Circle() {
   x = 0;
   y = 0;
-  radius = 0;
+  radius = 5.0;
 }
 
 Circle::Circle(int xCoord, int yCoord, double r) {
@@ -19,6 +19,12 @@ Circle::Circle(int xCoord, int yCoord, double r) {
   } else {
     radius = 5.0;
   }
+}
+
+Circle::Circle(const Circle &other) {
+  x = other.x;
+  y = other.y;
+  radius = other.radius;
 }
 
 int Circle::getX() const { return x; }
