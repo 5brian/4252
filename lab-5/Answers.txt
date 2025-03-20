@@ -1,0 +1,22 @@
+Question 1:
+When I called ptr->print() on a B object, it used A's print method.
+To fix this, I made print() virtual in class A.
+Now B's print method is called correctly when using ptr to a B object.
+
+Question 2:
+When I use a = b, only the A part of b gets copied to a.
+When I call a.print() or ptr->print() where ptr points to a, A's print method is called both times because a is now just an A object with B's data.
+This differs from Question 1 where ptr pointed to an actual B object.
+
+Question 3:
+It explicitly uses A's print method instead of B's.
+
+Question 4:
+A function(A obj) {
+   return obj;
+}
+Yes, a B object can be passed to this function, but it will be sliced to just its A part.
+
+Question 5:
+The inheritance would be private.
+This makes A's members private in B, so B objects can't be treated as A objects anymore.
