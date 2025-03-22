@@ -1,0 +1,7 @@
+compile with:
+
+g++ -o shapes main.cpp circle.cpp rectangle.cpp quadrilateral.cpp trapezoid.cpp
+
+run:
+
+./shapes
